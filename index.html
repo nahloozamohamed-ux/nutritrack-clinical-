@@ -113,6 +113,15 @@ button {
     <label>Protein target (g/kg)</label>
     <input id="protein" type="number" min="0.5" max="3" step="0.1" value="1.2" required>
 
+<label>Protein Distribution (%)</label>
+<input id="proteinPercent" type="number" min="0" max="100" value="20">
+
+<label>Carbohydrates Distribution (%)</label>
+<input id="carbPercent" type="number" min="0" max="100" value="50">
+
+<label>Fat Distribution (%)</label>
+<input id="fatPercent" type="number" min="0" max="100" value="30">
+
     <button type="submit">Calculate My Needs</button>
   </form>
 
@@ -124,6 +133,27 @@ button {
     <div class="result">Estimated Daily Calories: <span class="value" id="calories"></span> kcal/day</div>
     <div class="result">Estimated Protein: <span class="value" id="proteinResult"></span> g/day</div>
     <p class="note">
+      
+<hr>
+<h3>Macronutrients Distribution</h3>
+
+<div class="result">
+  Protein from calorie distribution:
+  <span class="value" id="macroProtein"></span> g/day
+</div>
+
+<div class="result">
+  Carbohydrates:
+  <span class="value" id="macroCarbs"></span> g/day
+</div>
+
+<div class="result">
+  Fat:
+  <span class="value" id="macroFat"></span> g/day
+</div>
+
+<p class="note" id="macroSummary"></p>
+
       Educational estimates for adults only.
       Results require professional assessment.
       Not intended for pregnancy, breastfeeding,
@@ -167,6 +197,32 @@ document.getElementById("nutritionForm").addEventListener("submit", function(e) 
 
   const protein = weight * proteinFactor;
 
+const proteinPercent = Number(
+  document.getElementById("proteinPercent").value
+);
+
+const carbPercent = Number(
+  document.getElementById("carbPercent").value
+);
+
+const fatPercent = Number(
+  document.getElementById("fatPercent").value
+);
+
+if (
+  ![proteinPercent, carbPercent, fatPercent].every(
+    n => Number.isFinite(n) && n >= 0 && n <= 100
+  ) ||
+  proteinPercent + carbPercent + fatPercent !== 100
+) {
+  alert("Macronutrient percentages must add up to 100%.");
+  return;
+}
+
+const macroProtein = (calories * proteinPercent / 100) / 4;
+const macroCarbs = (calories * carbPercent / 100) / 4;
+const macroFat = (calories * fatPercent / 100) / 9;
+
   let category = "";
   if (bmiValue < 18.5) category = "Underweight";
   else if (bmiValue < 25) category = "Normal range";
@@ -178,6 +234,20 @@ document.getElementById("nutritionForm").addEventListener("submit", function(e) 
   document.getElementById("bmr").textContent = Math.round(bmrValue);
   document.getElementById("calories").textContent = Math.round(calories);
   document.getElementById("proteinResult").textContent = Math.round(protein);
+
+document.getElementById("macroProtein").textContent =
+  macroProtein.toFixed(1);
+
+document.getElementById("macroCarbs").textContent =
+  macroCarbs.toFixed(1);
+
+document.getElementById("macroFat").textContent =
+  macroFat.toFixed(1);
+
+document.getElementById("macroSummary").textContent =
+  "Distribution: " + proteinPercent + "% Protein, " +
+  carbPercent + "% Carbohydrates, " +
+  fatPercent + "% Fat.";
 
   document.getElementById("results").style.display = "block";
 });
