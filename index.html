@@ -358,7 +358,25 @@ document.getElementById("macroSummary").textContent =
   "Distribution: " + proteinPercent + "% Protein, " +
   carbPercent + "% Carbohydrates, " +
   fatPercent + "% Fat.";
+// Update Macro Progress Bars
 
+document.getElementById("proteinBar").style.width =
+  proteinPercent + "%";
+
+document.getElementById("carbBar").style.width =
+  carbPercent + "%";
+
+document.getElementById("fatBar").style.width =
+  fatPercent + "%";
+
+document.getElementById("proteinPercentLabel").textContent =
+  proteinPercent + "%";
+
+document.getElementById("carbPercentLabel").textContent =
+  carbPercent + "%";
+
+document.getElementById("fatPercentLabel").textContent =
+  fatPercent + "%";
   document.getElementById("results").style.display = "block";
 });
 </script>
