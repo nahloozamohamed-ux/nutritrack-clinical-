@@ -96,6 +96,57 @@ button {
   font-weight: bold;
   font-size: 20px;
     }
+  /* Macro Progress Bars */
+
+.macro-bars {
+  margin-top: 20px;
+  padding: 18px;
+  background: white;
+  border-radius: 14px;
+}
+
+.macro-item {
+  margin-bottom: 20px;
+}
+
+.macro-item:last-child {
+  margin-bottom: 0;
+}
+
+.macro-label {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #334155;
+}
+
+.progress-track {
+  width: 100%;
+  height: 12px;
+  background: #e2e8f0;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  border-radius: 20px;
+  transition: width 0.5s ease;
+}
+
+.protein-fill {
+  background: #0d9488;
+}
+
+.carb-fill {
+  background: #3b82f6;
+}
+
+.fat-fill {
+  background: #f59e0b;
+}  
 </style>
 </head>
 <body>
@@ -180,7 +231,39 @@ button {
 </div>
 
 <p class="note" id="macroSummary"></p>
+<div class="macro-bars">
 
+  <div class="macro-item">
+    <div class="macro-label">
+      <span>Protein</span>
+      <span id="proteinPercentLabel">20%</span>
+    </div>
+    <div class="progress-track">
+      <div class="progress-fill protein-fill" id="proteinBar"></div>
+    </div>
+  </div>
+
+  <div class="macro-item">
+    <div class="macro-label">
+      <span>Carbohydrates</span>
+      <span id="carbPercentLabel">50%</span>
+    </div>
+    <div class="progress-track">
+      <div class="progress-fill carb-fill" id="carbBar"></div>
+    </div>
+  </div>
+
+  <div class="macro-item">
+    <div class="macro-label">
+      <span>Fat</span>
+      <span id="fatPercentLabel">30%</span>
+    </div>
+    <div class="progress-track">
+      <div class="progress-fill fat-fill" id="fatBar"></div>
+    </div>
+  </div>
+
+</div>
       Educational estimates for adults only.
       Results require professional assessment.
       Not intended for pregnancy, breastfeeding,
