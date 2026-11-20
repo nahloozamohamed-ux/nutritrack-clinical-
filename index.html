@@ -489,6 +489,69 @@ document.getElementById("fatPercentLabel").textContent =
   fatPercent + "%";
   document.getElementById("results").style.display = "block";
 });
+  
+// Display Food Exchange Table
+
+function renderFoodExchangeTable() {
+  const section = document.createElement("section");
+
+  section.id = "foodExchangeSection";
+  section.style.cssText = `
+    margin: 30px auto;
+    padding: 20px;
+    max-width: 1000px;
+    background: white;
+    border-radius: 12px;
+    overflow-x: auto;
+  `;
+
+  section.innerHTML = `
+    <h2>Food Exchange List</h2>
+    <p>
+      Nutritional values per one exchange serving.
+    </p>
+
+    <table style="
+      width: 100%;
+      border-collapse: collapse;
+      text-align: center;
+    ">
+      <thead>
+        <tr>
+          <th>Food Group</th>
+          <th>CHO (g)</th>
+          <th>Protein (g)</th>
+          <th>Fat (g)</th>
+          <th>Calories</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${foodExchanges.map(item => `
+          <tr>
+            <td>${item.group}</td>
+            <td>${item.cho}</td>
+            <td>${item.protein}</td>
+            <td>
+              ${item.fatMin === item.fatMax
+                ? item.fatMin
+                : `${item.fatMin}–${item.fatMax}`}
+            </td>
+            <td>${item.calories}</td>
+          </tr>
+        `).join("")}
+      </tbody>
+    </table>
+
+    <p style="font-size: 12px; margin-top: 15px;">
+      Values are approximate and represent one exchange serving.
+    </p>
+  `;
+
+  document.body.appendChild(section);
+}
+
+renderFoodExchangeTable();
+
 </script>
 </body>
 </html>
