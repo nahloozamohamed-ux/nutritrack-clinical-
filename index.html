@@ -279,6 +279,110 @@ button {
 </div>
 
 <script>
+  
+// NutriTrack - Food Exchange Database
+// Values represent one exchange serving.
+
+const foodExchanges = [
+  {
+    group: "Starch",
+    cho: 15,
+    protein: 3,
+    fatMin: 0,
+    fatMax: 0,
+    calories: 80
+  },
+  {
+    group: "Fruit",
+    cho: 15,
+    protein: 0,
+    fatMin: 0,
+    fatMax: 0,
+    calories: 60
+  },
+  {
+    group: "Non-starchy Vegetables",
+    cho: 5,
+    protein: 2,
+    fatMin: 0,
+    fatMax: 0,
+    calories: 25
+  },
+  {
+    group: "Very Low-fat Milk",
+    cho: 15,
+    protein: 8,
+    fatMin: 3,
+    fatMax: 3,
+    calories: 100
+  },
+  {
+    group: "Low-fat Milk",
+    cho: 15,
+    protein: 8,
+    fatMin: 5,
+    fatMax: 5,
+    calories: 120
+  },
+  {
+    group: "Whole Milk",
+    cho: 15,
+    protein: 8,
+    fatMin: 8,
+    fatMax: 8,
+    calories: 160
+  },
+  {
+    group: "Very Lean Meat",
+    cho: 0,
+    protein: 7,
+    fatMin: 0,
+    fatMax: 1,
+    calories: 35,
+    provisional: true
+  },
+  {
+    group: "Lean Meat",
+    cho: 0,
+    protein: 7,
+    fatMin: 3,
+    fatMax: 3,
+    calories: 45
+  },
+  {
+    group: "Medium-fat Meat",
+    cho: 0,
+    protein: 7,
+    fatMin: 5,
+    fatMax: 5,
+    calories: 75
+  },
+  {
+    group: "High-fat Meat",
+    cho: 0,
+    protein: 7,
+    fatMin: 8,
+    fatMax: 8,
+    calories: 100
+  },
+  {
+    group: "Fat",
+    cho: 0,
+    protein: 0,
+    fatMin: 5,
+    fatMax: 5,
+    calories: 45
+  },
+  {
+    group: "Legumes",
+    cho: 15,
+    protein: 7,
+    fatMin: 0,
+    fatMax: 0,
+    calories: 110
+  }
+];
+
 document.getElementById("nutritionForm").addEventListener("submit", function(e) {
   e.preventDefault();
 
